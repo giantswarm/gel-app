@@ -42,15 +42,15 @@ spec:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           env:
-            - name: EDGEDB_SERVER_PASSWORD
+            - name: GEL_SERVER_PASSWORD
               valueFrom:
                 secretKeyRef:
                   key: password
                   name: {{ include "resource.default.name"  . }}-server-password
             {{- if .Values.gel.security.tls.enabled }}
-            - name: EDGEDB_SERVER_TLS_CERT_FILE
+            - name: GEL_SERVER_TLS_CERT_FILE
               value: /etc/gel/tls/tls.crt
-            - name: EDGEDB_SERVER_TLS_KEY_FILE
+            - name: GEL_SERVER_TLS_KEY_FILE
               value: /etc/gel/tls/tls.key
             {{- else }}
             - name: EDGEDB_SERVER_SECURITY
@@ -79,9 +79,9 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.gel.backend.secretName }}
                   key: host
-            - name: EDGEDB_PORT  # Only to fix https://github.com/edgedb/edgedb-docker/issues/69
+            - name: GEL_PORT  # Only to fix https://github.com/edgedb/edgedb-docker/issues/69
               value: {{ .Values.gel.container.port | quote}}
-            - name: EDGEDB_SERVER_BACKEND_DSN
+            - name: GEL_SERVER_BACKEND_DSN
               value: "postgresql://$(PG_USER):$(PG_PASSWORD)@$(PG_SVC)?sslmode=disable"
           ports:
             - containerPort: {{ .Values.gel.container.port }}
