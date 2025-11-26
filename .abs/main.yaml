@@ -1,5 +1,5 @@
 replace-chart-version-with-git: true
 generate-metadata: true
-chart-dir: ./helm/edgedb
+chart-dir: ./helm/gel
 destination: ./build
 giantswarm-validator-ignored-checks: C0003
