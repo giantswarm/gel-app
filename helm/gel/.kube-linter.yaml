@@ -9,3 +9,4 @@ checks:
     - "dnsconfig-options"
     - "no-node-affinity"
     - "minimum-three-replicas"
+    - "dangling-networkpolicy"

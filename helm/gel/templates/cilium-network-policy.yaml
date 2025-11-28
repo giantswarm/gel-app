@@ -52,6 +52,7 @@ spec:
       toPorts:
         - ports:
             - port: "5432"
+            - port: "8000"
   egress:
     # Allow egress to other CNPG cluster members.
     - toEndpoints:
@@ -60,5 +61,6 @@ spec:
       toPorts:
         - ports:
             - port: "5432"
+            - port: "8000"
 {{ end }}
 {{ end }}
