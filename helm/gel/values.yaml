@@ -94,8 +94,8 @@ resources:
     cpu: 1
     memory: 2048Mi
   requests:
-    cpu: 1
-    memory: 2048Mi
+    cpu: 250m
+    memory: 1024Mi
 
 # Use either HPA or VPA, but not both.
 autoscaling:
