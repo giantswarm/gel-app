@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Disable VPA by default due to issues during schema migrations.
+- Increase CPU and memory requests.
+
 ### Fixed
 
 - Allow inter-pod networking for PostgreSQL databse instances.

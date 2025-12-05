@@ -91,8 +91,8 @@ ciliumNetworkPolicy:
 
 resources:
   limits:
-    cpu: 250m
-    memory: 1024Mi
+    cpu: 1
+    memory: 2048Mi
   requests:
     cpu: 250m
     memory: 1024Mi
@@ -107,7 +107,7 @@ autoscaling:
 
 # Use either HPA or VPA, but not both.
 vpa:
-  enabled: true
+  enabled: false
   containerPolicies:
     minAllowed:
       cpu: "250m"
