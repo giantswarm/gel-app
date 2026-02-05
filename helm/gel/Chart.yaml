@@ -10,7 +10,6 @@ sources:
   - https://github.com/Japan7/nanak8s/tree/main/charts/edgedb
 version: 1.0.1
 annotations:
-  application.giantswarm.io/team: "shield"
-  config.giantswarm.io/version: 1.x.x
   io.giantswarm.application.audience: all
   io.giantswarm.application.managed: "true"
+  io.giantswarm.application.team: "shield"
