@@ -10,3 +10,5 @@ checks:
     - "no-node-affinity"
     - "minimum-three-replicas"
     - "dangling-networkpolicy"
+    - "sorted-keys"  # Sorting YAML keys alphabetically is not a priority.
+    - "env-value-from"  # Secret is created dynamically by CloudNativePG Cluster CRD.
