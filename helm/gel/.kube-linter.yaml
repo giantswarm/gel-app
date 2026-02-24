@@ -10,3 +10,5 @@ checks:
     - "no-node-affinity"
     - "minimum-three-replicas"
     - "dangling-networkpolicy"
+    - "sorted-keys"
+    - "env-value-from"
