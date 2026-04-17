@@ -15,7 +15,23 @@ spec:
     - port: 5656
       protocol: TCP
   egress:
-  - {}
+  - toEndpoints:
+      - matchLabels:
+          io.kubernetes.pod.namespace: kube-system
+          k8s-app: coredns
+      - matchLabels:
+          io.kubernetes.pod.namespace: kube-system
+          k8s-app: k8s-dns-node-cache
+    toPorts:
+      - ports:
+          - port: "1053"
+            protocol: UDP
+          - port: "1053"
+            protocol: TCP
+          - port: "53"
+            protocol: UDP
+          - port: "53"
+            protocol: TCP
   policyTypes:
   - Egress
   - Ingress
