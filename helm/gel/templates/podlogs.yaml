@@ -1,0 +1,64 @@
+{{- with (.Values.monitoring).podLogs }}
+{{- if and .enabled ($.Capabilities.APIVersions.Has "monitoring.grafana.com/v1alpha2") }}
+apiVersion: monitoring.grafana.com/v1alpha2
+kind: PodLogs
+metadata:
+  name: {{ include "gel.fullname" $ }}
+  namespace: {{ include "resource.default.namespace" $ }}
+  labels:
+    {{- include "gel.labels" $ | nindent 4 }}
+    {{- with .labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  {{- with .annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  namespaceSelector:
+    matchLabels:
+      kubernetes.io/metadata.name: {{ include "resource.default.namespace" $ }}
+  selector:
+    matchLabels:
+      {{- include "gel.selectorLabels" $ | nindent 6 }}
+  relabelings:
+    - action: replace
+      replacement: {{ .tenant | quote }}
+      targetLabel: giantswarm_observability_tenant
+    {{- with .relabelings }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+{{- if $.Values.postgres.cnpg.enabled }}
+---
+apiVersion: monitoring.grafana.com/v1alpha2
+kind: PodLogs
+metadata:
+  name: {{ include "gel.pgClusterName" $ }}
+  namespace: {{ include "resource.default.namespace" $ }}
+  labels:
+    {{- include "gel.labels" $ | nindent 4 }}
+    cnpg.io/cluster: {{ include "gel.pgClusterName" $ }}
+    {{- with .labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  {{- with .annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  namespaceSelector:
+    matchLabels:
+      kubernetes.io/metadata.name: {{ include "resource.default.namespace" $ }}
+  selector:
+    matchLabels:
+      cnpg.io/cluster: {{ include "gel.pgClusterName" $ }}
+  relabelings:
+    - action: replace
+      replacement: {{ .tenant | quote }}
+      targetLabel: giantswarm_observability_tenant
+    {{- with .relabelings }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+{{- end }}
+{{- end }}
+{{- end }}

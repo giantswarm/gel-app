@@ -57,6 +57,12 @@ serviceAccount:
 monitoring:
   serviceMonitor:
     enabled: true
+  podLogs:
+    enabled: true
+    tenant: giantswarm
+    labels: {}
+    annotations: {}
+    relabelings: []
 
 podAnnotations: {}
 
