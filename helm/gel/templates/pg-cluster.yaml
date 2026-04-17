@@ -10,13 +10,6 @@ spec:
   storage:
     size: {{ .Values.postgres.cnpg.storage.size }}
 
-  monitoring:
-    enablePodMonitor: {{ .Values.postgres.cnpg.monitoring.podMonitor.enabled }}
-    podMonitorAdditionalLabels:
-    {{- with .Values.postgres.cnpg.monitoring.podMonitor.labels }}
-    {{- toYaml . | nindent 6 }}
-    {{- end}}
-
   imageCatalogRef:
     apiGroup: postgresql.cnpg.io
     kind: ClusterImageCatalog

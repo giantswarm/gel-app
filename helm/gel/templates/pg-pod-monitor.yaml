@@ -1,0 +1,21 @@
+{{- if and .Values.postgres.cnpg.enabled .Values.postgres.cnpg.monitoring.podMonitor.enabled (.Capabilities.APIVersions.Has "monitoring.coreos.com/v1") -}}
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: {{ include "gel.pgClusterName" . }}
+  namespace: {{ include "resource.default.namespace" . }}
+  labels:
+    {{- include "gel.labels" . | nindent 4 }}
+    cnpg.io/cluster: {{ include "gel.pgClusterName" . }}
+    {{- with .Values.postgres.cnpg.monitoring.podMonitor.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+spec:
+  selector:
+    matchLabels:
+      cnpg.io/cluster: {{ include "gel.pgClusterName" . }}
+      cnpg.io/podRole: instance
+  podMetricsEndpoints:
+    - port: metrics
+      path: /metrics
+{{- end -}}
