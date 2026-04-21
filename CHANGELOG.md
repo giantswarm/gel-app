@@ -10,10 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Add `io.giantswarm.application.audience` and `io.giantswarm.application.managed` chart annotations for Backstage visibility.
+- Add `PodLogs` resources for Gel and its CNPG database pods.
 
 ### Changed
 
 - Migrate chart metadata annotations to OCI-compatible format.
+- Disable deprecated CNPG operator-managed `PodMonitor` in favor of a new chart-managed `PodMonitor`.
 
 ## [1.0.1] - 2025-12-05
 
