@@ -8,7 +8,7 @@ icon: https://s.giantswarm.io/app-icons/edgedb/light.svg
 sources:
   - https://github.com/edgedb/edgedb
   - https://github.com/Japan7/nanak8s/tree/main/charts/edgedb
-version: 1.0.1
+version: 1.0.2
 annotations:
   io.giantswarm.application.audience: giantswarm
   io.giantswarm.application.managed: "true"
