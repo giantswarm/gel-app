@@ -1,6 +1,7 @@
 {
-    "$schema": "http://json-schema.org/schema#",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "type": "object",
+    "additionalProperties": true,
     "properties": {
         "affinity": {
             "type": "object"
@@ -22,6 +23,17 @@
                 }
             }
         },
+        "ciliumNetworkPolicy": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "fullnameOverride": {
+            "type": "string"
+        },
         "gel": {
             "type": "object",
             "properties": {
@@ -38,11 +50,46 @@
                             "type": "string"
                         }
                     }
+                },
+                "container": {
+                    "type": "object",
+                    "properties": {
+                        "port": {
+                            "type": "integer"
+                        },
+                        "portName": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "security": {
+                    "type": "object",
+                    "properties": {
+                        "serverPassword": {
+                            "type": "object",
+                            "properties": {
+                                "secretName": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "tls": {
+                            "type": "object",
+                            "properties": {
+                                "enabled": {
+                                    "type": "boolean"
+                                },
+                                "issuerName": {
+                                    "type": "string"
+                                },
+                                "secretName": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
                 }
             }
-        },
-        "fullnameOverride": {
-            "type": "string"
         },
         "image": {
             "type": "object",
@@ -64,11 +111,52 @@
         "imagePullSecrets": {
             "type": "array"
         },
+        "monitoring": {
+            "type": "object",
+            "properties": {
+                "podLogs": {
+                    "type": "object",
+                    "properties": {
+                        "annotations": {
+                            "type": "object"
+                        },
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "labels": {
+                            "type": "object"
+                        },
+                        "relabelings": {
+                            "type": "array"
+                        },
+                        "tenant": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "serviceMonitor": {
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    }
+                }
+            }
+        },
         "name": {
             "type": "string"
         },
         "nameOverride": {
             "type": "string"
+        },
+        "networkPolicy": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                }
+            }
         },
         "nodeSelector": {
             "type": "object"
@@ -98,11 +186,89 @@
                 }
             }
         },
+        "postgres": {
+            "type": "object",
+            "properties": {
+                "cnpg": {
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "imageCatalogRef": {
+                            "type": "object",
+                            "properties": {
+                                "major": {
+                                    "type": "integer"
+                                },
+                                "name": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "instances": {
+                            "type": "integer"
+                        },
+                        "monitoring": {
+                            "type": "object",
+                            "properties": {
+                                "podMonitor": {
+                                    "type": "object",
+                                    "properties": {
+                                        "enabled": {
+                                            "type": "boolean"
+                                        },
+                                        "labels": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "storage": {
+                            "type": "object",
+                            "properties": {
+                                "size": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "switchoverDelay": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            }
+        },
         "replicaCount": {
             "type": "integer"
         },
         "resources": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+                "limits": {
+                    "type": "object",
+                    "properties": {
+                        "cpu": {
+                            "type": "integer"
+                        },
+                        "memory": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "requests": {
+                    "type": "object",
+                    "properties": {
+                        "cpu": {
+                            "type": "string"
+                        },
+                        "memory": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
         },
         "securityContext": {
             "type": "object",
@@ -140,12 +306,11 @@
         "service": {
             "type": "object",
             "properties": {
-                "port": {
-                    "type": "integer"
-                },
                 "type": {
                     "type": "string"
-                }
+                },
+                "port": {},
+                "portName": {}
             }
         },
         "serviceAccount": {
@@ -167,6 +332,30 @@
         },
         "tolerations": {
             "type": "array"
+        },
+        "vpa": {
+            "type": "object",
+            "properties": {
+                "containerPolicies": {
+                    "type": "object",
+                    "properties": {
+                        "minAllowed": {
+                            "type": "object",
+                            "properties": {
+                                "cpu": {
+                                    "type": "string"
+                                },
+                                "memory": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "enabled": {
+                    "type": "boolean"
+                }
+            }
         }
     }
 }

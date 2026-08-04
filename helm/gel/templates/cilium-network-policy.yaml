@@ -14,7 +14,7 @@ spec:
     # Allow egress to database pods.
     # This assumes the Postgres cluster is the CNPG cluster included in this app. A separate policy is needed if using other Postgres clusters.
     - toEndpoints:
-        - matchLabels:        
+        - matchLabels:
             cnpg.io/cluster: {{ include "gel.pgClusterName" . }}
       toPorts:
       - ports:
@@ -74,7 +74,7 @@ spec:
   egress:
     # Allow egress to other CNPG cluster members.
     - toEndpoints:
-        - matchLabels:        
+        - matchLabels:
             cnpg.io/cluster: {{ include "gel.pgClusterName" . }}
       toPorts:
         - ports:
