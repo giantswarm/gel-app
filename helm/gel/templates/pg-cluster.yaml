@@ -15,11 +15,11 @@ spec:
     kind: ClusterImageCatalog
     major: {{ .Values.postgres.cnpg.imageCatalogRef.major }}
     name: {{ .Values.postgres.cnpg.imageCatalogRef.name }}
-  
+
   # Shutdown behavior is optimized for fast recovery time, at the expense of potential data loss.
   smartShutdownTimeout: 30
   stopDelay: 60
   switchoverDelay: {{ .Values.postgres.cnpg.switchoverDelay }}
-  
+
   enableSuperuserAccess: true
 {{- end -}}
