@@ -1,13 +1,15 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "type": "object",
-    "additionalProperties": true,
+    "additionalProperties": false,
     "properties": {
         "affinity": {
-            "type": "object"
+            "type": "object",
+            "additionalProperties": false
         },
         "autoscaling": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
                 "enabled": {
                     "type": "boolean"
@@ -23,19 +25,51 @@
                 }
             }
         },
+        "baseDomain": {
+            "type": "string"
+        },
+        "bootstrapMode": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "chartOperator": {
+            "type": "object",
+            "additionalProperties": true
+        },
         "ciliumNetworkPolicy": {
             "type": "object",
+            "additionalProperties": true,
             "properties": {
                 "enabled": {
                     "type": "boolean"
                 }
             }
         },
+        "cluster": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "clusterCA": {
+            "type": "string"
+        },
+        "clusterCIDR": {
+            "type": "string"
+        },
+        "clusterDNSIP": {
+            "type": "string"
+        },
+        "clusterID": {
+            "type": "string"
+        },
         "fullnameOverride": {
+            "type": "string"
+        },
+        "gcpProject": {
             "type": "string"
         },
         "gel": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
                 "args": {
                     "type": "array",
@@ -45,6 +79,7 @@
                 },
                 "backend": {
                     "type": "object",
+                    "additionalProperties": false,
                     "properties": {
                         "secretName": {
                             "type": "string"
@@ -53,6 +88,7 @@
                 },
                 "container": {
                     "type": "object",
+                    "additionalProperties": false,
                     "properties": {
                         "port": {
                             "type": "integer"
@@ -64,9 +100,11 @@
                 },
                 "security": {
                     "type": "object",
+                    "additionalProperties": false,
                     "properties": {
                         "serverPassword": {
                             "type": "object",
+                            "additionalProperties": false,
                             "properties": {
                                 "secretName": {
                                     "type": "string"
@@ -75,6 +113,7 @@
                         },
                         "tls": {
                             "type": "object",
+                            "additionalProperties": false,
                             "properties": {
                                 "enabled": {
                                     "type": "boolean"
@@ -91,8 +130,17 @@
                 }
             }
         },
+        "global": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "description": "Global values shared between all subcharts",
+            "$comment": "Added automatically by 'helm schema' to allow this chart to be used as a Helm dependency, as the `additionalProperties` setting would otherwise collide with Helm's special 'global' values key."
+        },
         "image": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
                 "name": {
                     "type": "string"
@@ -113,18 +161,22 @@
         },
         "monitoring": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
                 "podLogs": {
                     "type": "object",
+                    "additionalProperties": false,
                     "properties": {
                         "annotations": {
-                            "type": "object"
+                            "type": "object",
+                            "additionalProperties": false
                         },
                         "enabled": {
                             "type": "boolean"
                         },
                         "labels": {
-                            "type": "object"
+                            "type": "object",
+                            "additionalProperties": false
                         },
                         "relabelings": {
                             "type": "array"
@@ -136,6 +188,7 @@
                 },
                 "serviceMonitor": {
                     "type": "object",
+                    "additionalProperties": false,
                     "properties": {
                         "enabled": {
                             "type": "boolean"
@@ -152,6 +205,7 @@
         },
         "networkPolicy": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
                 "enabled": {
                     "type": "boolean"
@@ -159,13 +213,16 @@
             }
         },
         "nodeSelector": {
-            "type": "object"
+            "type": "object",
+            "additionalProperties": false
         },
         "podAnnotations": {
-            "type": "object"
+            "type": "object",
+            "additionalProperties": false
         },
         "podSecurityContext": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
                 "runAsGroup": {
                     "type": "integer"
@@ -178,6 +235,7 @@
                 },
                 "seccompProfile": {
                     "type": "object",
+                    "additionalProperties": false,
                     "properties": {
                         "type": {
                             "type": "string"
@@ -188,15 +246,18 @@
         },
         "postgres": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
                 "cnpg": {
                     "type": "object",
+                    "additionalProperties": false,
                     "properties": {
                         "enabled": {
                             "type": "boolean"
                         },
                         "imageCatalogRef": {
                             "type": "object",
+                            "additionalProperties": false,
                             "properties": {
                                 "major": {
                                     "type": "integer"
@@ -211,15 +272,18 @@
                         },
                         "monitoring": {
                             "type": "object",
+                            "additionalProperties": false,
                             "properties": {
                                 "podMonitor": {
                                     "type": "object",
+                                    "additionalProperties": false,
                                     "properties": {
                                         "enabled": {
                                             "type": "boolean"
                                         },
                                         "labels": {
-                                            "type": "object"
+                                            "type": "object",
+                                            "additionalProperties": false
                                         }
                                     }
                                 }
@@ -227,6 +291,7 @@
                         },
                         "storage": {
                             "type": "object",
+                            "additionalProperties": false,
                             "properties": {
                                 "size": {
                                     "type": "string"
@@ -240,14 +305,19 @@
                 }
             }
         },
+        "provider": {
+            "type": "string"
+        },
         "replicaCount": {
             "type": "integer"
         },
         "resources": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
                 "limits": {
                     "type": "object",
+                    "additionalProperties": false,
                     "properties": {
                         "cpu": {
                             "type": "integer"
@@ -259,6 +329,7 @@
                 },
                 "requests": {
                     "type": "object",
+                    "additionalProperties": false,
                     "properties": {
                         "cpu": {
                             "type": "string"
@@ -272,12 +343,14 @@
         },
         "securityContext": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
                 "allowPrivilegeEscalation": {
                     "type": "boolean"
                 },
                 "capabilities": {
                     "type": "object",
+                    "additionalProperties": false,
                     "properties": {
                         "drop": {
                             "type": "array",
@@ -295,6 +368,7 @@
                 },
                 "seccompProfile": {
                     "type": "object",
+                    "additionalProperties": false,
                     "properties": {
                         "type": {
                             "type": "string"
@@ -305,6 +379,7 @@
         },
         "service": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
                 "type": {
                     "type": "string"
@@ -315,9 +390,11 @@
         },
         "serviceAccount": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
                 "annotations": {
-                    "type": "object"
+                    "type": "object",
+                    "additionalProperties": false
                 },
                 "create": {
                     "type": "boolean"
@@ -330,17 +407,23 @@
         "serviceType": {
             "type": "string"
         },
+        "subscriptionID": {
+            "type": "string"
+        },
         "tolerations": {
             "type": "array"
         },
         "vpa": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
                 "containerPolicies": {
                     "type": "object",
+                    "additionalProperties": false,
                     "properties": {
                         "minAllowed": {
                             "type": "object",
+                            "additionalProperties": false,
                             "properties": {
                                 "cpu": {
                                     "type": "string"
