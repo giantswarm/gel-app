@@ -25,7 +25,7 @@ spec:
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
 metadata:
-  name: {{ include "resource.networkPolicy.name" . }}
+  name: {{ include "resource.networkPolicy.name" . }}-postgres
   namespace: {{ include "resource.default.namespace" . }}
   labels:
     {{- include "gel.labels" . | nindent 4 }}
