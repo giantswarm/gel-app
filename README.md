@@ -33,5 +33,5 @@ See our [full reference on how to configure apps](https://docs.giantswarm.io/get
 - [Gel (formerly EdgeDB)][edgedb]
 - Chart originally based on the [nanak8s edgedb charts][nanak8s]
 
-[edgedb]: https://github.com/edgedb/edgedb
-[nanak8s]: https://github.com/Japan7/nanak8s/tree/main/charts/edgedb
+[edgedb]: https://github.com/geldata/gel
+[nanak8s]: https://github.com/Japan7/nanak8s/tree/main/charts/gel

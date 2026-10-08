@@ -6,8 +6,8 @@ A Helm chart for deploying the Gel graph database.
 
 ## Source Code
 
-* <https://github.com/edgedb/edgedb>
-* <https://github.com/Japan7/nanak8s/tree/main/charts/edgedb>
+* <https://github.com/geldata/gel>
+* <https://github.com/Japan7/nanak8s/tree/main/charts/gel>
 
 ## Values
 
