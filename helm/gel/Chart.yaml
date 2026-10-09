@@ -6,8 +6,8 @@ description: A Helm chart for deploying the Gel graph database.
 home: https://github.com/giantswarm/gel-app
 icon: https://s.giantswarm.io/app-icons/edgedb/light.svg
 sources:
-  - https://github.com/edgedb/edgedb
-  - https://github.com/Japan7/nanak8s/tree/main/charts/edgedb
+  - https://github.com/geldata/gel
+  - https://github.com/Japan7/nanak8s/tree/main/charts/gel
 version: 1.0.3
 annotations:
   io.giantswarm.application.audience: giantswarm
